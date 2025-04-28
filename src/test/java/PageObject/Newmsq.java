@@ -93,6 +93,7 @@ WebDriver ldriver;
 	    public void switchToTab(int tabIndex) {
 	        // Get all window handles
 	        Set<String> handles = ldriver.getWindowHandles();
+	        // Convert Window Handles to List 	
 	        List<String> windowList = new ArrayList<>(handles);
 
 	        // Check if tab index is valid

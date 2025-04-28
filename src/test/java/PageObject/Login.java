@@ -7,6 +7,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
+
+
+
 
 
 public class Login {
@@ -58,7 +64,8 @@ public class Login {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		Otp.click();
+		WebDriverWait wait = new WebDriverWait(ldriver, 20);
+		wait.until(ExpectedConditions.elementToBeClickable(Otp)).click();
 		Otp.sendKeys(Enterotp);
 	}
 	public void clickoncontinue() {

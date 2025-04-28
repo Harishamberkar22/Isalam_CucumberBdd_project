@@ -37,6 +37,8 @@ public class Searchuser {
 	List<WebElement> tablerows;
 	
 	
+	
+	
 	public void clickonidentity()
 	{
 		try {
@@ -65,7 +67,6 @@ public class Searchuser {
 		
 	}
 	public boolean searchuseemailid(String expectedemail) {
-		//System.out.println(expectedemail);
 		boolean found=false;
 		///total no of rows in table/
 		int ttlrows=tablerows.size();

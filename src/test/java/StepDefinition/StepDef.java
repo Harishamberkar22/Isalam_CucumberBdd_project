@@ -4,21 +4,28 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.github.dockerjava.api.model.Event;
 
+import PageObject.AddBankAcc;
 import PageObject.EventCreation;
 import PageObject.Login;
 import PageObject.Newmsq;
+import PageObject.Registration;
 import PageObject.Searchuser;
+import PageObject.SupplierAndProduct;
+import PageObject.Ticketcreation;
 import Utilities.ReadConfig;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -37,10 +44,10 @@ import org.apache.logging.log4j.LogManager;
 import org.junit.Assert;
 
 
-;
+
 
 public class StepDef extends BaseClass {
-	
+	///launch browser////
 	@Before
 	public void setup() {
 		readConfig=new ReadConfig();
@@ -67,8 +74,9 @@ public class StepDef extends BaseClass {
 	    log.info("Setup executed...");
 		break;
 	default:
-			driver=null;
-			break;
+		if (driver == null) {
+	        throw new RuntimeException("WebDriver is not initialized!");
+	    }
 		}
 		
 	    
@@ -86,11 +94,16 @@ public class StepDef extends BaseClass {
 	    // Optional: Set implicit wait (if needed for page loading or element detection)
 	    //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-	    // Initialize Login page object
+	    // Initialize  page object
 	    loginpg = new Login(driver);
 	    evntcre=new EventCreation(driver);
 	    usersrch=new Searchuser(driver);
 	    Newmosque=new Newmsq(driver);
+	    addbank= new AddBankAcc(driver);
+	    ticketcreation=new Ticketcreation(driver);
+	    reg=new Registration(driver);
+	    supandProd=new SupplierAndProduct(driver);
+	   
 	    log.info("User Launch  browser");
 	    }
 
@@ -151,6 +164,43 @@ public class StepDef extends BaseClass {
 		loginpg.clickonLogout();
 		log.info("click on Logout");
 	}
+	////Registration///////////
+	@Then("user clicks on signup")
+	public void user_clicks_on_signup() {
+		reg.clickonreg();
+	}
+
+	@Then("User Enter Valid name as {string}")
+	public void user_enter_valid_name_as(String nme) {
+	   reg.entername(nme);
+	}
+
+	@Then("User Enter Valid Email as {string}")
+	public void user_enter_valid_email_as(String emadd) {
+	   reg.enteremail(emadd);
+	}
+
+	@Then("User Enter Valid Number as {string}")
+	public void user_enter_valid_number_as(String phne) {
+	   reg.enterNum(phne);
+	}
+
+	@Then("Click on Continue")
+	public void click_on_continue() {
+	    reg.clickonok();
+	}
+
+	@Then("Enter the Valid Otp as {string}")
+	public void enter_the_valid_otp_as(String otp) {
+	   reg.enterotp(otp);
+	}
+
+	@Then("Verifikasi & Lanjutkan")
+	public void verifikasi_lanjutkan() {
+	   reg.clickoncontinue();
+	}
+
+
 
 	/////////Slecct lang//////////
 	@When("Click on the Language")
@@ -217,6 +267,188 @@ public class StepDef extends BaseClass {
 	public void save_and_continue() {
 		evntcre.clickonsaveandcontnue4();
 	}
+	
+	////// Add inventory under mosque management/////////////
+	@Then("Clicks on Mosque Maagement")
+	public void clicks_on_mosque_maagement() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Click on inventory")
+	public void click_on_inventory() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Click on stock-in")
+	public void click_on_stock_in() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Enter the details")
+	public void Enter_the_details() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Click on Add button")
+	public void Click_on_add_button() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("check the add list should be displayed")
+	public void check_the_add_list_should_be_displayed() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+	
+	//////////Add product Threshold under mosque management////////
+
+	@Then("click on Mosque Maagement")
+	public void click_on_mosque_maagement() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("click on Product threshold")
+	public void click_on_product_threshold() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("click on Add button")
+	public void click_on_add_button() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("add details in popup page")
+	public void add_details_in_popup_page() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Select on add to save the details")
+	public void select_on_add_to_save_the_details() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("check the added product should be displayed")
+	public void check_the_added_product_should_be_displayed() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	
+	////////////Add suplier name under master name/////////
+	@Then("click on Master data")
+	public void click_on_master_data() {
+		supandProd.clickonmaster();
+	}
+
+	@Then("click on supplier option")
+	public void click_on_supplier_option() {
+	    supandProd.clickonSupplier();
+	}
+	@Then("Click on Add button1")
+	public void Click_on_Add_button() {
+	    supandProd.clickonAdd(); // calling method from Page Object class
+	}
+
+	@Then("Enter the details {string}, {string}, {string}, {string}")
+	public void enter_the_details(String name, String address, String mobile, String email) {
+		supandProd.EnterTheDetails(name, address, mobile, email);
+	}
+
+	@Then("select on  add to save details")
+	public void select_on_add_to_save_details() {
+		supandProd.clickonAddtoSave();
+	    
+	}
+
+	@Then("Verify the added Suplier {string} name should be dsiplayed")
+	public void verify_the_added_suplier_name_should_be_dsiplayed(String expectedSupplierEmail) {
+		supandProd.verifyAddedSupplier(expectedSupplierEmail);
+		boolean isDisplayed = supandProd.verifyAddedSupplier(expectedSupplierEmail);
+		 WebElement addedSupplierEmail = driver.findElement(By.xpath("//td[contains(text(),'" + expectedSupplierEmail + "')]"));
+		    
+		    Assert.assertTrue(addedSupplierEmail.isDisplayed());
+	    Assert.assertTrue("Supplier '" + expectedSupplierEmail + "' was not found in the list!", isDisplayed);
+	   
+	}
+
+	
+	///////Add product under masterdata/////////
+	@Then("click on Master datas")
+	public void click_on_master_datas() {
+		supandProd.clickonmaster();
+	
+	}
+	@Then("click on products menu option")
+	public void click_on_products_menu_option() {
+		supandProd.scroll();
+		supandProd.clickonProductmenu();
+	    
+	}
+	@Then("Click on Add buttons")
+    public void click_on_add_buttons() {
+		supandProd.clickonAdd2();
+    }
+
+    @Then("Enter the details {string},{string}")
+    public void enter_the_details(String categoryName, String descName) {
+    	supandProd.enterCatName(categoryName, descName);
+        
+    }
+
+    @Then("select on add to save details")
+    public void select_on_add_to_save_details1() throws InterruptedException {
+    	supandProd.clickonAdd3toSave();
+    	Thread.sleep(2000);
+    	supandProd.scroll();
+    	
+    }
+
+    @And("Check the added product {string} name should be dsiplayed")
+    public void check_the_added_product_name_should_be_displayed(String catName) throws InterruptedException  {
+    	Thread.sleep(2000);
+    	supandProd.extendpage();
+    	Thread.sleep(2000);
+    	supandProd.productAddedorNot(catName);
+        
+    }
+
+    @And("click on three dotted menu")
+    public void click_on_three_dotted_menu() {
+    }
+
+    @Then("click on subcategory")
+    public void click_on_subcategory() {
+    	supandProd.clickonsubcat();
+    }
+
+    @And("click on Add_option inside subcategory")
+    public void click_on_add_option_inside_subcategory() {
+    }
+
+    @And("Enter the sub category details {string},{string}")
+    public void enter_sub_category_details(String subCategoryName, String subCategoryDesc) {
+      
+    }
+
+    @And("click on Add option")
+    public void click_on_add_option() {
+        
+    }
+
+    @And("check added list {string} should be displayed")
+    public void check_added_list_should_be_displayed(String subCatName) {
+       
+        }
 
 	
 	////click on identity access///////////
@@ -325,10 +557,64 @@ public class StepDef extends BaseClass {
 
 	@Then("Go to the Dashboard and enable the button")
 	public void go_to_the_dashboard_and_enable_the_button() {
+		
+	}
+	
+	///  creating bank account//////
+//	@Then("click on masterdata")
+//	public void click_on_masterdata() {
+//		addbank.Masterdata();
+//		
+//	}
+
+	@Then("clicks on Banks account")
+	public void clicks_on_banks_account() {
+		addbank.bankacc(); 
+	}
+
+	@Then("Click on add button")
+	public void click_on_add_tobutton() {
+	   addbank.addbutton();
+	}
+
+	@Then("Enter the deatails and click on Add button")
+	public void enter_the_deatails_and_click_on_add_button() {
+		addbank.enterdetails();
+	    
+	}
+
+	@Then("Check added account is displaying")
+	public void check_added_account_is_displaying() {
 	   
 	}
 	
-	@After
+	////Create SMS Ticket////////
+	@Then("click on Managament hub")
+	public void click_on_managament_hub() {
+	    ticketcreation.clickonMangmntHub();
+	}
+
+	@Then("clicks on Service management")
+	public void clicks_on_service_management() {
+		ticketcreation.clickonSMS();
+	}
+
+	@Then("Click on Any tabs")
+	public void click_on_any_tabs() {
+	    ticketcreation.clickonbox();
+	}
+
+	@Then("click on New button")
+	public void click_on_new_button() {
+	   ticketcreation.clickonNew();
+	}
+
+	@Then("Enter the Details")
+	public void enter_the_details() {
+		ticketcreation.Category();
+	   
+	}
+	//@After
 	public void teardown(Scenario sc) {
 		if(sc.isFailed()) {
 			String filepath="C:\\Users\\Harish\\Desktop\\selenium islaam\\isalaam\\Screenshot\\Test.png";
@@ -343,6 +629,14 @@ public class StepDef extends BaseClass {
 			}
 		}
 		//driver.quit();
+	}
+	@AfterStep
+	public void screenshotafterfailedcases(Scenario scenario) {
+		
+			final byte[] screenshot=((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+			//attact image  file report(data, media type, name of the attachment)
+			scenario.attach(screenshot, "image/png", scenario.getName());
+		
 	}
 
 }
